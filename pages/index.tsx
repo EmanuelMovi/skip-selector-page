@@ -77,7 +77,9 @@ export default function Home() {
                   allowedOnRoad={skip.allowed_on_road}
                   allowsHeavyWaste={skip.allows_heavy_waste}
                   isSelected={skip.id === selectedId}
-                  onSelect={() => setSelectedId(skip.id)}
+                  onSelect={() =>
+                    setSelectedId((prev) => (prev === skip.id ? null : skip.id))
+                  }
                   image="/images/skip.png"
                 />
               ))}
@@ -99,9 +101,13 @@ export default function Home() {
                   </span>
                 </div>
                 <div className="flex gap-2 justify-center sm:justify-end w-full sm:w-auto">
-                  <button className="px-4 py-1.5 border border-white/20 rounded text-white text-sm hover:bg-white/10 transition">
+                  <button
+                    onClick={() => setSelectedId(null)}
+                    className="px-4 py-1.5 border border-white/20 rounded text-white text-sm hover:bg-white/10 transition"
+                  >
                     Back
                   </button>
+
                   <button className="px-4 py-1.5 bg-cyan-500 text-white text-sm font-medium rounded hover:bg-cyan-600 transition">
                     Continue
                   </button>
